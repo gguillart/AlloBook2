@@ -37,6 +37,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     public static final String Livre_Titre = "Titre";
     public static final String Livre_Annee_De_Parution = "AnneeParution";
     public static final String Livre_Description = "Description";
+    public static final String Livre_Couverture= "Couverture";
     public static final String Livre_Table_Name = "Livre";
     public static final String Livre_Table_Create =
             "CREATE TABLE " + Livre_Table_Name + " (" +
@@ -44,7 +45,8 @@ public class DataBaseHandler extends SQLiteOpenHelper {
                     Livre_Note + " INTEGER, " +
                     Livre_Titre + " TEXT NOT NULL, " +
                     Livre_Annee_De_Parution + " INTEGER, " +
-                    Livre_Description + " TEXT);";
+                    Livre_Description + " TEXT, " +
+                    Livre_Couverture + " TEXT);";
     public static final String LivreAuteur_Key = "LivreAuteur_id";
     public static final String LivreAuteur_Table_Name = "LivreAuteur";
     public static final String LivreAuteur_Table_Create =
