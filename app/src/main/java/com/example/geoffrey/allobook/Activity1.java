@@ -14,7 +14,7 @@ public class Activity1 extends ActionBarActivity {
         setContentView(R.layout.activity_activity1);
     }
 
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -36,4 +36,5 @@ public class Activity1 extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    */
 }
