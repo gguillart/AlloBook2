@@ -14,6 +14,7 @@ public class PageAccueil extends ActionBarActivity {
         setContentView(R.layout.activity_page_accueil);
     }
 
+/*
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -36,4 +37,6 @@ public class PageAccueil extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    */
+    
 }
