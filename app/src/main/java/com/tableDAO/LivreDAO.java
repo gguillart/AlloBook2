@@ -1,5 +1,6 @@
 package com.tableDAO;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,8 +29,15 @@ public class LivreDAO extends DataBase {
         db = open();
     }
 
-    public void ajouter(Livre livre){
-
+    public long ajouter(Livre livre){
+        ContentValues value = new ContentValues();
+        value.put(this.Key, livre.getLivreId());
+        value.put(this.Titre, livre.getTitre());
+        value.put(this.Annee_De_Parution, livre.getAnnee());
+        value.put(this.Description, livre.getDescription());
+        value.put(this.Note, livre.getNote());
+        value.put(this.Couverture, livre.getCouverture());
+        return dB.insert(this.Table_Name, null, value);
     }
 
     public void modifier(Livre livre, int id){
