@@ -1,9 +1,16 @@
 package com.example.geoffrey.allobook;
 
+import android.content.res.Resources;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.table.Livre;
+import com.tableDAO.LivreDAO;
+
+import java.util.ArrayList;
 
 
 public class Activity1 extends ActionBarActivity {
@@ -11,7 +18,22 @@ public class Activity1 extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ArrayList<String> auteurs = new ArrayList(1);
+        auteurs.add("Bob");
+        Livre livre = new Livre("coucou", "tu veux voir ma bite", auteurs);
+        LivreDAO livreDAO = new LivreDAO(this);
+        livreDAO.open();
+        long id = livreDAO.ajouter(livre);
+        /*Livre livre2 = livreDAO.selectionner(1);
+        String titre = livre2.getTitre();*/
         setContentView(R.layout.activity_activity1);
+
+        Resources res = getResources();
+
+        String chaine = res.getString(R.string.test, livre.getTitre(), id);
+        TextView vue = (TextView)findViewById(R.id.vue);
+
+        vue.setText(chaine);
     }
 
 /*
