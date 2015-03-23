@@ -43,7 +43,7 @@
             android:paddingLeft="20dp"/>
     </LinearLayout>
 
-    <ImageButton
+    <!--<ImageButton
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:id="@+id/imageButton"
@@ -52,7 +52,7 @@
         android:src="@drawable/NextButton"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"/>-->
 
 
 </LinearLayout>

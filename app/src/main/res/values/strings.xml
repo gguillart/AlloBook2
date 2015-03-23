@@ -6,6 +6,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_page_accueil">PageAccueil</string>
     <string name="test">Le titre du livre est : %1$s, son identifiant est %2$d.</string>
+    <string name="title_activity_consulter_livre">ConsulterLivre</string>
 
 </resources>
 

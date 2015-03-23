@@ -37,7 +37,7 @@ public class LivreDAO extends DataBase {
         value.put(this.Description, livre.getDescription());
         value.put(this.Note, livre.getNote());
         value.put(this.Couverture, livre.getCouverture());
-        return dB.insert(this.Table_Name, null, value);
+        return db.insert(this.Table_Name, null, value);
     }
 
     public void modifier(Livre livre, int id){

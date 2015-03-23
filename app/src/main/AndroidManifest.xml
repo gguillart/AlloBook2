@@ -20,6 +20,10 @@
             android:name=".PageAccueil"
             android:label="@string/title_activity_page_accueil" >
         </activity>
+        <activity
+            android:name=".ConsulterLivre"
+            android:label="@string/title_activity_consulter_livre" >
+        </activity>
     </application>
 
 </manifest>
