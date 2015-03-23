@@ -18,6 +18,7 @@
 
     <string name="action_example">Example action</string>
     <string name="titreLivre">%1$s</string>
+    <string name="descriptionLivre">%1$s</string>
 
 </resources>
 

@@ -14,33 +14,6 @@
         android:layout_height="match_parent"
         android:weightSum="1">
 
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_gravity="center_horizontal">
-
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:id="@+id/imageView"
-                android:src="@drawable/bouton_hautgauche2"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"/>
-
-            <SearchView
-                android:layout_marginTop="12dp"
-                android:layout_marginLeft="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/searchView2" />
-        </LinearLayout>
-
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -59,7 +32,6 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:id="@+id/titreLivre"
-                    android:text="Titre"
                     android:textSize="40dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"/>
@@ -144,11 +116,10 @@
             android:layout_marginLeft="20dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Blablablablablablablablablablablablabla blablablablablablablablablablablablalba  blablablablabla...    Lire la suite"
-            android:id="@+id/textView9"
+            android:id="@+id/descriptionLivre"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"/>
 

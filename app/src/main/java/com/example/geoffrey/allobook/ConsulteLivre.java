@@ -62,9 +62,15 @@ public class ConsulteLivre extends ActionBarActivity
 
         Resources res = getResources();
 
+        //Titre du livre
         String titreChaine = res.getString(R.string.titreLivre, livre.getTitre(), id);
         TextView titreLivre = (TextView)findViewById(R.id.titreLivre);
         titreLivre.setText(titreChaine);
+
+        //Description
+        String descriptionChaine = res.getString(R.string.descriptionLivre, livre.getDescription(), id);
+        TextView descriptionLivre = (TextView)findViewById(R.id.descriptionLivre);
+        descriptionLivre.setText(descriptionChaine);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
