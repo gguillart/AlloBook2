@@ -114,4 +114,71 @@ public class LivreDAO extends DataBase {
 
         return livre;
     }
+
+    public Livre selectionnerParTitre(String titre){
+        Cursor c = db.rawQuery("select " + Note + ", " + Key + ", " + Annee_De_Parution + ", " +
+                Description + ", " + Couverture + ", Auteur_id, NomAuteur, DateNaissance, NomTag, NomGenre from " + Table_Name +
+                " NATURAL JOIN LivreAuteur NATURAL JOIN Auteur where " + Titre + " = ?" , new String[]{titre});
+
+        c.moveToNext();
+        int note = c.getInt(0);
+        int id = c.getInt(1);
+        int annee = c.getInt(2);
+        String description = c.getString(3);
+        String couverture = c.getString(4);
+        int auteurId = c.getInt(5);
+        String NomAuteur = c.getString(6);
+        String DateNaissance = c.getString(7);
+
+        ArrayList<ArrayList> listeAuteur = new ArrayList<>();
+        ArrayList auteur = new ArrayList<>();
+        auteur.add(auteurId);
+        auteur.add(NomAuteur);
+        auteur.add(DateNaissance);
+        listeAuteur.add(auteur);
+
+        while(c.moveToNext()){
+            int auteurId2 = c.getInt(5);
+            String NomAuteur2 = c.getString(6);
+            String DateNaissance2 = c.getString(7);
+            ArrayList auteur2 = new ArrayList<>();
+            auteur2.add(auteurId2);
+            auteur2.add(NomAuteur2);
+            auteur2.add(DateNaissance2);
+            listeAuteur.add(auteur2);
+        }
+
+
+        Livre livre = new Livre(titre, description, listeAuteur);
+        livre.setAnnee(annee);
+        livre.setCouverture(couverture);
+        livre.setNote(note);
+        livre.setLivreId(id);
+
+        String identifiant = "" + id;
+        Cursor c2 = db.rawQuery("select NomTag from Livre NATURAL JOIN TagLivre NATURAL JOIN Tag where " +
+                Key + " = ?" , new String[]{identifiant});
+
+        ArrayList<String> listeTag = new ArrayList<>();
+
+        while(c2.moveToNext()){
+            String tag = c2.getString(0);
+            listeTag.add(tag);
+        }
+
+        livre.setTag(listeTag);
+
+
+        Cursor c3 = db.rawQuery("select NomGenre from Livre NATURAL JOIN GenreLivre NATURAL JOIN Genre where " +
+                Key + " = ?" , new String[]{identifiant});
+
+        ArrayList<String> listeGenre = new ArrayList<>();
+        while(c3.moveToNext()){
+            String genre = c3.getString(0);
+            listeGenre.add(genre);
+        }
+        livre.setGenre(listeGenre);
+
+        return livre;
+    }
 }
