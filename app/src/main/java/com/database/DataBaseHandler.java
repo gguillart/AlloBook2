@@ -155,22 +155,70 @@ public class DataBaseHandler extends SQLiteOpenHelper {
                     GroupeUtilisateur_Key + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                     Groupe_Key + " INTEGER NOT NULL REFERENCES " + Groupe_Table_Name + " (" + Groupe_Key + ") ON DELETE CASCADE ON UPDATE CASCADE, " +
                     Utilisateur_Key + " INTEGER NOT NULL REFERENCES " + Utilisateur_Table_Name + " (" + Utilisateur_Key + ") ON DELETE CASCADE ON UPDATE CASCADE);";
+
+    public static final String Auteur_TABLE_DROP = "DROP TABLE IF EXISTS " + Auteur_Table_Name + ";";
+    public static final String Groupe_TABLE_DROP = "DROP TABLE IF EXISTS " + Groupe_Table_Name + ";";
+    public static final String Genre_TABLE_DROP = "DROP TABLE IF EXISTS " + Genre_Table_Name + ";";
+    public static final String Tag_TABLE_DROP = "DROP TABLE IF EXISTS " + Tag_Table_Name + ";";
+    public static final String Livre_TABLE_DROP = "DROP TABLE IF EXISTS " + Livre_Table_Name + ";";
+    public static final String LivreAuteur_TABLE_DROP = "DROP TABLE IF EXISTS " + LivreAuteur_Table_Name + ";";
+    public static final String GenreLivre_TABLE_DROP = "DROP TABLE IF EXISTS " + GenreLivre_Table_Name + ";";
+    public static final String TagLivre_TABLE_DROP = "DROP TABLE IF EXISTS " + TagLivre_Table_Name + ";";
+    public static final String Utilisateur_TABLE_DROP = "DROP TABLE IF EXISTS " + Utilisateur_Table_Name + ";";
+    public static final String Administrateur_TABLE_DROP = "DROP TABLE IF EXISTS " + Administrateur_Table_Name + ";";
+    public static final String Post_TABLE_DROP = "DROP TABLE IF EXISTS " + Post_Table_Name + ";";
+    public static final String Resume_TABLE_DROP = "DROP TABLE IF EXISTS " + Resume_Table_Name + ";";
+    public static final String Note_TABLE_DROP = "DROP TABLE IF EXISTS " + Note_Table_Name + ";";
+    public static final String Commentaire_TABLE_DROP = "DROP TABLE IF EXISTS " + Commentaire_Table_Name + ";";
+    public static final String AdminGroupe_TABLE_DROP = "DROP TABLE IF EXISTS " + AdminGroupe_Table_Name + ";";
+    public static final String Favoris_TABLE_DROP = "DROP TABLE IF EXISTS " + Favoris_Table_Name + ";";
+    public static final String GroupeUtilisateur_TABLE_DROP = "DROP TABLE IF EXISTS " + GroupeUtilisateur_Table_Name + ";";
+
     public DataBaseHandler(Context context, String nom, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, nom, factory, version);
     }
+
     @Override
     public void onCreate(SQLiteDatabase dB) {
-        dB.execSQL(Auteur_Table_Create + Groupe_Table_Create + Genre_Table_Create + Tag_Table_Create +
-                Livre_Table_Create + LivreAuteur_Table_Create + GenreLivre_Table_Create +
-                TagLivre_Table_Create + Utilisateur_Table_Create + Administrateur_Table_Create +
-                Post_Table_Create + Resume_Table_Create + Note_Table_Create + Commentaire_Table_Create +
-                AdminGroupe_Table_Create + Favoris_Table_Create + GroupeUtilisateur_Table_Create);
+        dB.execSQL(Auteur_Table_Create);
+        dB.execSQL(Groupe_Table_Create);
+        dB.execSQL(Genre_Table_Create);
+        dB.execSQL(Tag_Table_Create);
+        dB.execSQL(Livre_Table_Create);
+        dB.execSQL(LivreAuteur_Table_Create);
+        dB.execSQL(GenreLivre_Table_Create);
+        dB.execSQL(TagLivre_Table_Create);
+        dB.execSQL(Utilisateur_Table_Create);
+        dB.execSQL(Administrateur_Table_Create);
+        dB.execSQL(Post_Table_Create);
+        dB.execSQL(Resume_Table_Create);
+        dB.execSQL(Note_Table_Create);
+        dB.execSQL(Commentaire_Table_Create);
+        dB.execSQL(AdminGroupe_Table_Create);
+        dB.execSQL(Favoris_Table_Create);
+        dB.execSQL(GroupeUtilisateur_Table_Create);
     }
-    //public static final String METIER_TABLE_DROP = "DROP TABLE IF EXISTS " + METIER_TABLE_NAME + ";";
+
+
     @Override
     public void onUpgrade(SQLiteDatabase dB, int oldVersion, int newVersion) {
-/*dB.execSQL(METIER_TABLE_DROP);
-onCreate(dB);*/
-//TODO
+        dB.execSQL(Auteur_TABLE_DROP);
+        dB.execSQL(Groupe_TABLE_DROP);
+        dB.execSQL(Genre_TABLE_DROP);
+        dB.execSQL(Tag_TABLE_DROP);
+        dB.execSQL(Livre_TABLE_DROP);
+        dB.execSQL(LivreAuteur_TABLE_DROP);
+        dB.execSQL(GenreLivre_TABLE_DROP);
+        dB.execSQL(TagLivre_TABLE_DROP);
+        dB.execSQL(Utilisateur_TABLE_DROP);
+        dB.execSQL(Administrateur_TABLE_DROP);
+        dB.execSQL(Post_TABLE_DROP);
+        dB.execSQL(Resume_TABLE_DROP);
+        dB.execSQL(Note_TABLE_DROP);
+        dB.execSQL(Commentaire_TABLE_DROP);
+        dB.execSQL(AdminGroupe_TABLE_DROP);
+        dB.execSQL(Favoris_TABLE_DROP);
+        dB.execSQL(GroupeUtilisateur_TABLE_DROP);
+        onCreate(dB);
     }
 }
