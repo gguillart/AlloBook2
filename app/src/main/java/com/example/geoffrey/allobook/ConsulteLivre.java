@@ -1,6 +1,7 @@
 package com.example.geoffrey.allobook;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,11 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.table.Livre;
+import com.tableDAO.LivreDAO;
+
+import java.util.ArrayList;
 
 
 public class ConsulteLivre extends ActionBarActivity
@@ -35,7 +41,30 @@ public class ConsulteLivre extends ActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ArrayList<String> auteurs = new ArrayList(1);
+        ArrayList<String> tags = new ArrayList(10);
+        auteurs.add("Wallace Wang");
+        tags.add("nuls");
+        tags.add("programmer");
+        Livre livre = new Livre("Apprendre à programmer pour les nuls", "Avec Apprendre à programmer Pour les Nuls, il n'est pas question de faire de vous un programmeur professionnel en quelques jours mais de vous mettre le pied à l'étrier afin de vous apprendre à développer des programmes dans un langage structuré. En quelques heures vous deviendrez familier avec la structure de base de données, les opérateurs, les instructions conditionnelles, la gestion des tableaux, etc. Vous apprendrez également les bases du langage HTML, le langage d'Internet.", auteurs);
+        livre.setTag(tags);
+        LivreDAO livreDAO = new LivreDAO(this);
+        livreDAO.open();
+        long id = livreDAO.ajouter(livre);
+
+
+
+        /*Livre livreImport = livreDAO.selectionner(1);
+        String titre = livreImport.getTitre();*/
+
         setContentView(R.layout.activity_consulte_livre);
+
+        Resources res = getResources();
+
+        String titreChaine = res.getString(R.string.titreLivre, livre.getTitre(), id);
+        TextView titreLivre = (TextView)findViewById(R.id.titreLivre);
+        titreLivre.setText(titreChaine);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
