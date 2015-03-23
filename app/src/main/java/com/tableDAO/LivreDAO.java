@@ -15,7 +15,6 @@ import java.util.ArrayList;
  */
 public class LivreDAO extends DataBase {
 
-    SQLiteDatabase db;
     public static final String Key = "Livre_id";
     public static final String Note = "NoteLivre";
     public static final String Titre = "Titre";
@@ -26,18 +25,18 @@ public class LivreDAO extends DataBase {
 
     public LivreDAO(Context context) {
         super(context);
-        db = open();
+        open();
     }
 
     public long ajouter(Livre livre){
         ContentValues value = new ContentValues();
-        value.put(this.Key, livre.getLivreId());
+        //value.put(this.Key, livre.getLivreId());
         value.put(this.Titre, livre.getTitre());
         value.put(this.Annee_De_Parution, livre.getAnnee());
         value.put(this.Description, livre.getDescription());
         value.put(this.Note, livre.getNote());
         value.put(this.Couverture, livre.getCouverture());
-        return db.insert(this.Table_Name, null, value);
+        return dB.insert(this.Table_Name, null, value);
     }
 
     public void modifier(Livre livre, int id){
@@ -50,7 +49,7 @@ public class LivreDAO extends DataBase {
 
     public Livre selectionner(int id){
         String identifiant = "" + id;
-        Cursor c = db.rawQuery("select " + Note + ", " + Titre + ", " + Annee_De_Parution + ", " +
+        Cursor c = dB.rawQuery("select " + Note + ", " + Titre + ", " + Annee_De_Parution + ", " +
                 Description + ", " + Couverture + ", Auteur_id, NomAuteur, DateNaissance, NomTag, NomGenre from " + Table_Name +
                 " NATURAL JOIN LivreAuteur NATURAL JOIN Auteur where " + Key + " = ?" , new String[]{identifiant});
 
@@ -89,7 +88,7 @@ public class LivreDAO extends DataBase {
         livre.setNote(note);
         livre.setLivreId(id);
 
-        Cursor c2 = db.rawQuery("select NomTag from Livre NATURAL JOIN TagLivre NATURAL JOIN Tag where " +
+        Cursor c2 = dB.rawQuery("select NomTag from Livre NATURAL JOIN TagLivre NATURAL JOIN Tag where " +
                 Key + " = ?" , new String[]{identifiant});
 
         ArrayList<String> listeTag = new ArrayList<>();
@@ -102,7 +101,7 @@ public class LivreDAO extends DataBase {
         livre.setTag(listeTag);
 
 
-        Cursor c3 = db.rawQuery("select NomGenre from Livre NATURAL JOIN GenreLivre NATURAL JOIN Genre where " +
+        Cursor c3 = dB.rawQuery("select NomGenre from Livre NATURAL JOIN GenreLivre NATURAL JOIN Genre where " +
                 Key + " = ?" , new String[]{identifiant});
 
         ArrayList<String> listeGenre = new ArrayList<>();
@@ -116,7 +115,7 @@ public class LivreDAO extends DataBase {
     }
 
     public Livre selectionnerParTitre(String titre){
-        Cursor c = db.rawQuery("select " + Note + ", " + Key + ", " + Annee_De_Parution + ", " +
+        Cursor c = dB.rawQuery("select " + Note + ", " + Key + ", " + Annee_De_Parution + ", " +
                 Description + ", " + Couverture + ", Auteur_id, NomAuteur, DateNaissance, NomTag, NomGenre from " + Table_Name +
                 " NATURAL JOIN LivreAuteur NATURAL JOIN Auteur where " + Titre + " = ?" , new String[]{titre});
 
@@ -156,7 +155,7 @@ public class LivreDAO extends DataBase {
         livre.setLivreId(id);
 
         String identifiant = "" + id;
-        Cursor c2 = db.rawQuery("select NomTag from Livre NATURAL JOIN TagLivre NATURAL JOIN Tag where " +
+        Cursor c2 = dB.rawQuery("select NomTag from Livre NATURAL JOIN TagLivre NATURAL JOIN Tag where " +
                 Key + " = ?" , new String[]{identifiant});
 
         ArrayList<String> listeTag = new ArrayList<>();
@@ -169,7 +168,7 @@ public class LivreDAO extends DataBase {
         livre.setTag(listeTag);
 
 
-        Cursor c3 = db.rawQuery("select NomGenre from Livre NATURAL JOIN GenreLivre NATURAL JOIN Genre where " +
+        Cursor c3 = dB.rawQuery("select NomGenre from Livre NATURAL JOIN GenreLivre NATURAL JOIN Genre where " +
                 Key + " = ?" , new String[]{identifiant});
 
         ArrayList<String> listeGenre = new ArrayList<>();

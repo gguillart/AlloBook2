@@ -17,7 +17,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
                     Auteur_Date_De_Naissance + " TEXT);";
     public static final String Groupe_Key = "Groupe_id";
     public static final String Groupe_Nom = "NomGroupe";
-    public static final String Groupe_Table_Name = "Auteur";
+    public static final String Groupe_Table_Name = "Groupe";
     public static final String Groupe_Table_Create =
             "CREATE TABLE " + Groupe_Table_Name + " (" +
                     Groupe_Key + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
