@@ -103,7 +103,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="0dp"/>
 
-        <ImageView
+        <!--<ImageView
             android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:id="@+id/imageView4"
@@ -112,7 +112,7 @@
             android:scaleType="fitCenter"
             android:layout_marginLeft="140dp"
             android:layout_marginTop="10dp"
-            />
+            />-->
 
     </LinearLayout>
 

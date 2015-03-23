@@ -24,6 +24,10 @@
             android:name=".ConsulterLivre"
             android:label="@string/title_activity_consulter_livre" >
         </activity>
+        <activity
+            android:name=".ConsulteLivre"
+            android:label="@string/title_activity_consulte_livre" >
+        </activity>
     </application>
 
 </manifest>

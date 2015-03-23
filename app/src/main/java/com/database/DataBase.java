@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
  * Created by Yohann on 18/02/2015.
  */
 public abstract class DataBase {
-    protected final static int version = 1;
+    protected final static int version = 2;
     protected final static String nom = "com.database.db";
     protected SQLiteDatabase dB = null;
     protected DataBaseHandler handler = null;

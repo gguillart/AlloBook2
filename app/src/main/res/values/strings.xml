@@ -7,6 +7,16 @@
     <string name="title_activity_page_accueil">PageAccueil</string>
     <string name="test">Le titre du livre est : %1$s, son identifiant est %2$d.</string>
     <string name="title_activity_consulter_livre">ConsulterLivre</string>
+    <string name="title_activity_consulte_livre">ConsulteLivre</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
 
 </resources>
 
