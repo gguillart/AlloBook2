@@ -49,69 +49,76 @@ public class LivreDAO extends DataBase {
 
     public Livre selectionner(int id){
         String identifiant = "" + id;
-        Cursor c = dB.rawQuery("select " + Note + ", " + Titre + ", " + Annee_De_Parution + ", " +
-                Description + ", " + Couverture + ", Auteur_id, NomAuteur, DateNaissance, NomTag, NomGenre from " + Table_Name +
+        Cursor c = dB.rawQuery("SELECT " + Note + ", " + Titre + ", " + Annee_De_Parution + ", " +
+                Description + ", " + Couverture + ", Auteur_id, NomAuteur, DateNaissance from " + Table_Name +
                 " NATURAL JOIN LivreAuteur NATURAL JOIN Auteur where " + Key + " = ?" , new String[]{identifiant});
 
-        c.moveToNext();
-        int note = c.getInt(0);
-        String titre = c.getString(1);
-        int annee = c.getInt(2);
-        String description = c.getString(3);
-        String couverture = c.getString(4);
-        int auteurId = c.getInt(5);
-        String NomAuteur = c.getString(6);
-        String DateNaissance = c.getString(7);
 
-        ArrayList<ArrayList> listeAuteur = new ArrayList<>();
-        ArrayList auteur = new ArrayList<>();
-        auteur.add(auteurId);
-        auteur.add(NomAuteur);
-        auteur.add(DateNaissance);
-        listeAuteur.add(auteur);
+        if(c.moveToNext()) {
+            int note = c.getInt(0);
+            String titre = c.getString(1);
+            int annee = c.getInt(2);
+            String description = c.getString(3);
+            String couverture = c.getString(4);
+            int auteurId = c.getInt(5);
+            String NomAuteur = c.getString(6);
+            String DateNaissance = c.getString(7);
 
-        while(c.moveToNext()){
-            int auteurId2 = c.getInt(5);
-            String NomAuteur2 = c.getString(6);
-            String DateNaissance2 = c.getString(7);
-            ArrayList auteur2 = new ArrayList<>();
-            auteur2.add(auteurId2);
-            auteur2.add(NomAuteur2);
-            auteur2.add(DateNaissance2);
-            listeAuteur.add(auteur2);
+            ArrayList<ArrayList> listeAuteur = new ArrayList<>();
+            ArrayList auteur = new ArrayList<>();
+            auteur.add(auteurId);
+            auteur.add(NomAuteur);
+            auteur.add(DateNaissance);
+            listeAuteur.add(auteur);
+
+            while (c.moveToNext()) {
+                int auteurId2 = c.getInt(5);
+                String NomAuteur2 = c.getString(6);
+                String DateNaissance2 = c.getString(7);
+                ArrayList auteur2 = new ArrayList<>();
+                auteur2.add(auteurId2);
+                auteur2.add(NomAuteur2);
+                auteur2.add(DateNaissance2);
+                listeAuteur.add(auteur2);
+            }
+
+
+            Livre livre = new Livre(titre, description, listeAuteur);
+            livre.setAnnee(annee);
+            livre.setCouverture(couverture);
+            livre.setNote(note);
+            livre.setLivreId(id);
+
+            Cursor c2 = dB.rawQuery("select NomTag from Livre NATURAL JOIN TagLivre NATURAL JOIN Tag where " +
+                    Key + " = ?", new String[]{identifiant});
+
+            ArrayList<String> listeTag = new ArrayList<>();
+
+            while (c2.moveToNext()) {
+                String tag = c2.getString(0);
+                listeTag.add(tag);
+            }
+
+            livre.setTag(listeTag);
+
+
+            Cursor c3 = dB.rawQuery("select NomGenre from Livre NATURAL JOIN GenreLivre NATURAL JOIN Genre where " +
+                    Key + " = ?", new String[]{identifiant});
+
+            ArrayList<String> listeGenre = new ArrayList<>();
+            while (c3.moveToNext()) {
+                String genre = c3.getString(0);
+                listeGenre.add(genre);
+            }
+            livre.setGenre(listeGenre);
+            return livre;
+        } else {
+            ArrayList auteur = new ArrayList();
+            auteur.add("erreur");
+            Livre livre = new Livre("erreur", "erreur", auteur);
+            return livre;
         }
 
-
-        Livre livre = new Livre(titre, description, listeAuteur);
-        livre.setAnnee(annee);
-        livre.setCouverture(couverture);
-        livre.setNote(note);
-        livre.setLivreId(id);
-
-        Cursor c2 = dB.rawQuery("select NomTag from Livre NATURAL JOIN TagLivre NATURAL JOIN Tag where " +
-                Key + " = ?" , new String[]{identifiant});
-
-        ArrayList<String> listeTag = new ArrayList<>();
-
-        while(c2.moveToNext()){
-            String tag = c2.getString(0);
-            listeTag.add(tag);
-        }
-
-        livre.setTag(listeTag);
-
-
-        Cursor c3 = dB.rawQuery("select NomGenre from Livre NATURAL JOIN GenreLivre NATURAL JOIN Genre where " +
-                Key + " = ?" , new String[]{identifiant});
-
-        ArrayList<String> listeGenre = new ArrayList<>();
-        while(c3.moveToNext()){
-            String genre = c3.getString(0);
-            listeGenre.add(genre);
-        }
-        livre.setGenre(listeGenre);
-
-        return livre;
     }
 
     public Livre selectionnerParTitre(String titre){
