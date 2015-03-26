@@ -56,20 +56,20 @@ public class ConsulteLivre extends ActionBarActivity
 
 
 
-        Livre livreImport = livreDAO.selectionner(2);
-        /*String titre = livreImport.getTitre();*/
+        /*Livre livreImport = livreDAO.selectionner(1);
+        String titre = livreImport.getTitre();*/
 
         setContentView(R.layout.activity_consulte_livre);
 
         Resources res = getResources();
 
         //Titre du livre
-        String titreChaine = res.getString(R.string.titreLivre, livreImport.getTitre(), id);
+        String titreChaine = res.getString(R.string.titreLivre, livre.getTitre(), id);
         TextView titreLivre = (TextView)findViewById(R.id.titreLivre);
         titreLivre.setText(titreChaine);
 
         //Description
-        String descriptionChaine = res.getString(R.string.descriptionLivre, livreImport.getDescription(), id);
+        String descriptionChaine = res.getString(R.string.descriptionLivre, livre.getDescription(), id);
         TextView descriptionLivre = (TextView)findViewById(R.id.descriptionLivre);
         descriptionLivre.setText(descriptionChaine);
 
@@ -79,7 +79,7 @@ public class ConsulteLivre extends ActionBarActivity
         auteurLivre.setText(auteurChaine);
 
         //Annee
-        String anneeChaine = res.getString(R.string.anneeLivre, livreImport.getAnnee(), id);
+        String anneeChaine = res.getString(R.string.anneeLivre, livre.getAnnee(), id);
         TextView anneeLivre = (TextView)findViewById(R.id.anneeLivre);
         anneeLivre.setText(anneeChaine);
 
