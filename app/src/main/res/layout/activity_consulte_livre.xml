@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:id="@+id/titreLivre"
-                    android:textSize="40dp"
+                    android:textSize="20dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"/>
 
@@ -40,17 +40,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Auteur"
-                    android:id="@+id/textView3"
-                    android:textSize="30dp"
+                    android:id="@+id/auteurLivre"
+                    android:textSize="20dp"
                     android:layout_marginLeft="15dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Annee"
-                    android:id="@+id/textView4"
+                    android:id="@+id/anneeLivre"
                     android:layout_marginLeft="20dp"/>
 
             </LinearLayout>
@@ -120,6 +118,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/descriptionLivre"
+            android:textSize="13dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"/>
 

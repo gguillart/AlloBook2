@@ -9,16 +9,18 @@
     <string name="title_activity_consulter_livre">ConsulterLivre</string>
     <string name="title_activity_consulte_livre">ConsulteLivre</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_section1">Accueil</string>
+    <string name="title_section2">Livres favoris</string>
+    <string name="title_section3">Mes résumés</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_example">Example action</string>
+    <string name="action_example"></string>
     <string name="titreLivre">%1$s</string>
     <string name="descriptionLivre">%1$s</string>
+    <string name="auteurLivre">%1$s</string>
+    <string name="anneeLivre">%1$s</string>
 
 </resources>
 

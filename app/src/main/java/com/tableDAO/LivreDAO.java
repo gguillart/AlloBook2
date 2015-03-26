@@ -48,7 +48,19 @@ public class LivreDAO extends DataBase {
     }
 
     public Livre selectionner(int id){
-        String identifiant = "" + id;
+
+        ArrayList<String> auteurs = new ArrayList();
+        Livre livre=new Livre("","", auteurs);
+        Cursor c = dB.rawQuery("SELECT * FROM " + Table_Name + " WHERE " + Key + "=" + id, null);
+        if (c.moveToFirst()) {
+            livre.setLivreId(c.getInt(c.getColumnIndex(Key)));
+            livre.setTitre(c.getString(c.getColumnIndex(Titre)));
+            livre.setAnnee(c.getInt(c.getColumnIndex(Annee_De_Parution)));
+            livre.setDescription(c.getString(c.getColumnIndex(Description)));
+            livre.setNote(c.getInt(c.getColumnIndex(Note)));
+            c.close();
+        }
+        /*String identifiant = "" + id;
         Cursor c = dB.rawQuery("select " + Note + ", " + Titre + ", " + Annee_De_Parution + ", " +
                 Description + ", " + Couverture + ", Auteur_id, NomAuteur, DateNaissance, NomTag, NomGenre from " + Table_Name +
                 " NATURAL JOIN LivreAuteur NATURAL JOIN Auteur where " + Key + " = ?" , new String[]{identifiant});
@@ -109,7 +121,7 @@ public class LivreDAO extends DataBase {
             String genre = c3.getString(0);
             listeGenre.add(genre);
         }
-        livre.setGenre(listeGenre);
+        livre.setGenre(listeGenre);*/
 
         return livre;
     }

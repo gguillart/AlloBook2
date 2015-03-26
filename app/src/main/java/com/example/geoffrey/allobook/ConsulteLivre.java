@@ -47,30 +47,41 @@ public class ConsulteLivre extends ActionBarActivity
         auteurs.add("Wallace Wang");
         tags.add("nuls");
         tags.add("programmer");
-        Livre livre = new Livre("Apprendre à programmer pour les nuls", "Avec Apprendre à programmer Pour les Nuls, il n'est pas question de faire de vous un programmeur professionnel en quelques jours mais de vous mettre le pied à l'étrier afin de vous apprendre à développer des programmes dans un langage structuré. En quelques heures vous deviendrez familier avec la structure de base de données, les opérateurs, les instructions conditionnelles, la gestion des tableaux, etc. Vous apprendrez également les bases du langage HTML, le langage d'Internet.", auteurs);
+        Livre livre = new Livre("Apprendre à programmer pour les nuls", "Avec Apprendre à programmer Pour les Nuls, il n'est pas question de faire de vous un programmeur professionnel en quelques jours...", auteurs);
         livre.setTag(tags);
+        livre.setAnnee(2004);
         LivreDAO livreDAO = new LivreDAO(this);
         livreDAO.open();
         long id = livreDAO.ajouter(livre);
 
 
 
-        /*Livre livreImport = livreDAO.selectionner(1);
-        String titre = livreImport.getTitre();*/
+        Livre livreImport = livreDAO.selectionner(2);
+        /*String titre = livreImport.getTitre();*/
 
         setContentView(R.layout.activity_consulte_livre);
 
         Resources res = getResources();
 
         //Titre du livre
-        String titreChaine = res.getString(R.string.titreLivre, livre.getTitre(), id);
+        String titreChaine = res.getString(R.string.titreLivre, livreImport.getTitre(), id);
         TextView titreLivre = (TextView)findViewById(R.id.titreLivre);
         titreLivre.setText(titreChaine);
 
         //Description
-        String descriptionChaine = res.getString(R.string.descriptionLivre, livre.getDescription(), id);
+        String descriptionChaine = res.getString(R.string.descriptionLivre, livreImport.getDescription(), id);
         TextView descriptionLivre = (TextView)findViewById(R.id.descriptionLivre);
         descriptionLivre.setText(descriptionChaine);
+
+        //Auteur
+        String auteurChaine = res.getString(R.string.auteurLivre, livre.getAuteur().get(0), id);
+        TextView auteurLivre = (TextView)findViewById(R.id.auteurLivre);
+        auteurLivre.setText(auteurChaine);
+
+        //Annee
+        String anneeChaine = res.getString(R.string.anneeLivre, livreImport.getAnnee(), id);
+        TextView anneeLivre = (TextView)findViewById(R.id.anneeLivre);
+        anneeLivre.setText(anneeChaine);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
